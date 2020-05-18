@@ -1,7 +1,11 @@
 #!/bin/bash
 
-FILE_TO_PARSE=$2
-PATH_TO_FILE="$FILE_TO_PARSE"
+LANGUAGE=$1 # Specified language in workflow file
+FILEPATH=$2 # filepath specified in workflow file
+
+# Since the cloned repo is in the workspace directory, need to get a path there
+PATH_IN_CONTAINER="$GITHUB_WORKSPACE/$FILE_TO_PARSE"
 LOGFILE="$(date +%s).txt"
-java -jar /LanguageTool/languagetool-commandline.jar -l $1 --json $PATH_TO_FILE >> $LOGFILE
+
+java -jar /LanguageTool/languagetool-commandline.jar -l $1 --json $PATH_IN_CONTAINER >> $LOGFILE
 python3 /parse_log.py $FILE_TO_PARSE $LOGFILE
