@@ -1,32 +1,15 @@
 
 # Introduction
 
-[LanguageTool] is an Open Source proof­reading software for English, French,
+[LanguageTool](https://www.languagetool.org/) is an Open Source proof­reading software for English, French,
 German, Polish, and more than 20 other languages.
 
-You can use the LanguageTools with a [firefox-plugin].
+This is a GitHub Action to run against your own repository, and works by bundling the entirety of LanguageTool into GitHub Actions. The primary use case envisioned for this Action is for private repositories containing sensitive material, which one wouldn't want leaving their own repository. If you want less overhead, LanguageTool also has an API, or you could spin up your own server and point an Action to: http://wiki.languagetool.org/public-http-api.
 
-This is a Dockerfile to get the languagetools running on a system without java.
+# Attribution
 
-[LanguageTool]: https://www.languagetool.org/
-[firefox-plugin]: https://addons.mozilla.org/firefox/addon/languagetoolfx/
+This image is heavily based off of [docker-languagetool](https://github.com/silvio/docker-languagetool). The core language tool project can be found at https://github.com/languagetool-org/languagetool.
 
 # Usage
 
-The Server is running on port 8010, this port should exposed.
-
-    $ docker pull silviof/docker-languagetool
-    [...]
-    $ docker run --rm -p 8010:8010 silviof/docker-languagetool
-
-Or you run it in background via `-d`-option.
-
-
-## ngram support
-
-To support [ngrams] you need an additional volume or directory mounted to the
-`/ngrams` directory. For that add a `-v` to the `docker run`-command.
-
-    docker run ... -v /path/to/ngrams:/ngrams ...
-
-[ngrams]: http://wiki.languagetool.org/finding-errors-using-n-gram-data
+Check out the [`workflow/test.yml`](https://github.com/rzhade3/languagetool-github-action/blob/master/.github/workflows/test.yml) to look at a working workflow file.
