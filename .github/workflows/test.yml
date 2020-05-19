@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Spelling and Grammar check
       id: languagetool
-      uses: rzhade3/docker-languagetool@github-action-v0
+      uses: rzhade3/docker-languagetool@master
       with:
         language: 'en-US'
         filepath: 'test/incorrect.txt'
