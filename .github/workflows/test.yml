@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+
+    name: A spellchecking and grammar checking job
+    steps:
+    - uses: actions/checkout@v2
+    - name: Spelling and Grammar check
+      id: languagetool
+      uses: rzhade3/docker-languagetool@master
+      with:
+        language: 'en-US'
+        filepath: 'test/incorrect.txt'
+    # Use the output from the `hello` step
+    - name: Get the errors
+      run: echo "Some errors were found, i.e. ${{ steps.hello.outputs.warnings }}"
